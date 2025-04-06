@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const PodcastEpisodeCard = ({ image, title, date, description, host, guest }) => {
+const PodcastEpisodeCard = ({ image, title, date, description, host, guest, id }) => {
     description = description.length > 400 ? description.slice(0, 400) + '...' : description;
-    console.log(guest)
+
     return (
         <div className="border-t border-[#767676] pt-8 pb-8 flex flex-col md:flex-row gap-6 max-w-[1280px]">
             <section className='w-[480px] h-[480px] relative'>
@@ -15,7 +15,7 @@ const PodcastEpisodeCard = ({ image, title, date, description, host, guest }) =>
                     style={{ objectFit: 'cover' }}
                     className='bg-gray-200'
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    unoptimized={'true'}
+                    priority
                 // className="w-[480px] h-[480px] object-cover bg-gray-200"
                 />
             </section>
@@ -28,7 +28,7 @@ const PodcastEpisodeCard = ({ image, title, date, description, host, guest }) =>
 
                 <div className="bg-[#FDC52A] h-[160px] rounded-lg" />
 
-                <p className="text-[#474747] text-base font-light">{description}<Link className='text-nowrap text-blue-800' href='/'>Read More</Link></p>
+                <p className="text-[#474747] text-base font-light">{description}<Link className='text-nowrap text-blue-800' href={'/episodes/'+ id}>Read More</Link></p>
 
                 <div className="text-[#474747] text-sm">
                     <p>

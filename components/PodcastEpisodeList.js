@@ -3,7 +3,6 @@ import { formatDateToMMDDYY, getEpisodes, getGuestsList } from '@/lib/helpers';
 
 const PodcastEpisodeList = async () => {
     const episodes = await getEpisodes();
-    console.log(episodes)
    
     return (
         <section className="w-full max-w-screen-xl mx-auto px-4 py-16">
@@ -11,7 +10,7 @@ const PodcastEpisodeList = async () => {
             {
                 episodes.map(async(ep, idx) => {
                     const guests = await getGuestsList(ep);
-                    const date = await formatDateToMMDDYY(new Date(ep.date));
+                    const date = await formatDateToMMDDYY(ep.date);
                     const data = {
                         image: `${process.env.NEXT_PUBLIC_PB_URL}/api/files/${ep.collectionId}/${ep.id}/` + ep.images[0] || "https://placehold.co/480x480",
                         title: ep.Title || "Title of Podcast Episode",
@@ -20,6 +19,7 @@ const PodcastEpisodeList = async () => {
                             ep.Blog || "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         host: ep.host,
                         guest: guests,
+                        id: ep.id
                     }
                     return (
                         <PodcastEpisodeCard key={idx} {...data} />

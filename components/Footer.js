@@ -7,9 +7,13 @@ import instagram from '../public/assets/footer/instagram.png';
 import linkedin from '../public/assets/footer/linkedin.png';
 import twitter from '../public/assets/footer/twitter.png';
 import logo from '../public/assets/footer/logo.png';
+import { getPartners } from '@/lib/helpers';
 
 
-const Footer = () => {
+const Footer = async () => {
+    const data = await getPartners();
+    const sortedData = data?.sort((a, b) => b.order - a.order)
+    if (!data) return <p>error</p>;
   return (
     <footer className='bg-secondary flex flex-col pb-[30px] lg:p-[50px] lg:pb-[0px] justify-center items-center gap-12'>
       <div className="top flex flex-col justify-center items-center lg:items-start gap-2 lg:w-[90%] lg:flex-row lg:justify-evenly xl:w-[80%]">
@@ -35,26 +39,13 @@ const Footer = () => {
           <div className="group footerFont font-[500] lg:text-[1.1rem] flex flex-col border-b justify-center items-center lg:justify-start lg:items-start gap-2 lg:border-b-0 lg:pb-[1rem]" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
             <p className='p-bold text-para bold font-[800]'>Our Partners</p>
             <ul className='flex justify-center pb-[5%] items-center lg:justify-start lg:items-start lg:pb-[0%] flex-col gap-2'>
-              <li>
-                <p>
-                  <a href="https://www.childrensrescuefund.org/" target="_blank" rel="noopener noreferrer">Children&apos;s Rescue Fund</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <a href="https://www.hfhnyc.org/" target="_blank" rel="noopener noreferrer" >Home for the Homeless</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <a href="https://www.learntobe.org/" target="_blank" rel="noopener noreferrer" >Learn To Be</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <a href="https://bxnf.org/" target="_blank" rel="noopener noreferrer" >Bronx Family Network</a>
-                </p>
-              </li>
+              {
+                sortedData?.map((partner, index) => (
+                    <li key={index} className='flex items-start gap-2'>
+                         <a href={partner.url} target="_blank" rel="noopener noreferrer">{partner.name}</a>
+                    </li>
+                ))
+              }
               <li className='border-0'><p><a href='./get-involved' >Become a partner</a></p></li>
             </ul>
           </div>
