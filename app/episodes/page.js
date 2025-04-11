@@ -56,7 +56,7 @@ export default async function EpisodesListPage() {
                     src={`${process.env.NEXT_PUBLIC_PB_URL}/api/files/${episode.collectionId}/${episode.id}/${episode.images[0]}`}
                     alt={`Artwork for ${episode.Title}`}
                     width={200}
-                    height={200} 
+                    height={200}
                     className="aspect-square w-full rounded-md object-cover"
                   />
                 ) : (
@@ -69,7 +69,7 @@ export default async function EpisodesListPage() {
 
             {/* --- Details Section (List View) --- */}
             <div className="flex flex-col justify-center">
-            
+
               <div className="mb-2 inline-block self-start rounded bg-yellow-400 px-2 py-0.5 text-xs font-medium text-gray-800">
                 {formatDateToMMDDYY(episode.date)}
               </div>
@@ -82,7 +82,7 @@ export default async function EpisodesListPage() {
               </h2>
 
               {/* Description Excerpt */}
-              <p className="mb-3 text-sm text-gray-600 line-clamp-3"> 
+              <p className="mb-3 text-sm text-gray-600 line-clamp-3">
                 {truncateText(episode.Blog, 150)}
               </p>
 
@@ -93,7 +93,7 @@ export default async function EpisodesListPage() {
 
               {/* Read More Link */}
               <Link href={`/episodes/${episode.id}`} className="text-sm font-medium text-blue-600 hover:underline self-start">
-                  Listen to Episode →
+                Listen to Episode →
               </Link>
             </div>
           </article>

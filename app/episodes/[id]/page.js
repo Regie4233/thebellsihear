@@ -1,6 +1,7 @@
 import { formatDateToMMDDYY, getEpisode, getGuestsList } from '@/lib/helpers';
 import Image from 'next/image';
-import Link from 'next/link'; 
+import Link from 'next/link';
+import Footer from '@/components/Footer';
 
 
 export default async function EpisodePage({ params }) {
@@ -18,12 +19,12 @@ export default async function EpisodePage({ params }) {
           Sorry, we couldnt find the episode you were looking for.
         </p>
         <Link href="/episodes" className="mt-6 inline-block rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700">
-            Back to Episodes
+          Back to Episodes
         </Link>
       </div>
     );
   }
-  
+
   return (
     <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12">
       {/* Optional: Breadcrumbs */}
@@ -34,49 +35,114 @@ export default async function EpisodePage({ params }) {
         &gt;
         <span>{episode.Title}</span>
       </div>
+      {/* --- TOP COVER Image (New) --- */}
+      <div className="w-full h-[516px] relative rounded-md overflow-hidden shadow-md mb-8">
+        <Image
+          src={
+            episode.images?.length > 0
+              ? `${process.env.NEXT_PUBLIC_PB_URL}/api/files/${episode.collectionId}/${episode.id}/${episode.images[0]}`
+              : 'https://placehold.co/1280x516'
+          }
+          alt={episode.Title}
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
 
       <article className="flex flex-col gap-6 md:flex-row md:gap-8 lg:gap-12">
-        {/* --- Image Section --- */}
-        <div className="w-full md:w-1/3 lg:w-2/5 md:max-w-sm">
-          {episode.images ? (
-            <Image
-              src={`${process.env.NEXT_PUBLIC_PB_URL}/api/files/${episode.collectionId}/${episode.id}/` + episode.images[0]}
-              alt={`Podcast artwork for ${episode.Title}`}
-              width={500} 
-              height={500} 
-              className="aspect-square w-full rounded-md object-cover shadow-md"
-              priority 
-            />
-          ) : (
-            <div className="flex aspect-square w-full items-center justify-center rounded-md bg-gray-200 text-gray-500 shadow-sm">
-              Image Placeholder
-            </div>
-          )}
-        </div>
+
+
 
         {/* --- Details Section --- */}
-        <div className="w-full md:w-2/3 lg:w-3/5">
-          <h1 className="mb-1 text-2xl font-semibold text-gray-800 md:text-3xl lg:text-4xl">
-            Episode: {episode.Title || "Title of Podcast Episode"}
-          </h1>
+        <div className="max-w-[960px] w-full mx-auto">
+          <h2 className="text-[36px] font-bold text-black/20 leading-tight">
+            Episode No. | {episode.Title || "Title of Podcast Episode"}
+          </h2>
 
-          <div className="mb-4 inline-block rounded bg-yellow-400 px-2 py-1 text-xs font-medium text-gray-800 md:text-sm">
-            {formatDateToMMDDYY(episode.date)} 
+
+          <div className="max-w-[960px] w-full mx-auto text-[#7E7E7E] text-[16px] font-semibold mb-4">
+            {formatDateToMMDDYY(episode.date)} | {episode.duration || '32min 24secs'}
           </div>
 
-          <div className="prose prose-sm md:prose-base mt-4 max-w-none text-gray-700">
-          
-            <p>{episode.Blog}</p>
-         
+          {/* Media Player */}
+          <div className="w-full max-w-[960px] h-[160px] mx-auto bg-[#0860A3] rounded-[16px] flex items-center justify-center text-white text-[26px] font-bold mb-6">
+            Media Player
+          </div>
+          {/* Blog */}
+          <div className="w-full max-w-[960px] mx-auto text-[16px] text-black/20 leading-relaxed mb-8">
+            {episode.Blog}
           </div>
 
-          <div className="mt-6 border-t border-gray-200 pt-4 text-sm text-gray-600">
-            <p className="mb-1"><strong>Host:</strong> {episode.host}</p>
-            {<p><strong>Guest:</strong> {(await getGuestsList(episode)).map((name, index) => index + 1 === getGuestsList(episode).length ? `${name}` : `${name}, ` )}</p>}
+
+          {/* Host name and guest name */}
+          <div className="w-full max-w-[960px] mx-auto mt-6 pt-4 text-[16px] text-black/20">
+            <p className="mb-1"><strong classname="font-bold">Host:</strong> {episode.host}</p>
+            {<p><strong clasname="font-bold">Guest:</strong>{' '}{(await getGuestsList(episode)).join(', ')}</p>}
           </div>
 
+          {/* Quote */}
+          <div className="w-full py-8 flex flex-col items-center justify-center gap-16">
+            <div className="w-full max-w-[960px] px-16 py-8 border-y-[6px] border-[#7E7E7E] flex flex-col items-center gap-4">
+              {/* Top Quote Icon */}
+              <img src="/assets/quotes/quote_left.png" alt="quote left" className="w-9 h-9" />
+
+              <div className="flex flex-col items-center gap-2">
+                {/* Dynamic Quote Content */}
+                <div className="text-center text-[#0860A3] text-[26px] font-bold leading-snug">
+                  {episode.quote || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+                </div>
+
+                {/* Dynamic Guests Display */}
+                <div className="text-center text-black/20 text-[16px] font-normal">
+                  – {(await getGuestsList(episode)).join(', ')}
+                </div>
+              </div>
+
+              {/* Bottom Quote Icon */}
+              <img src="/assets/quotes/quote_right.png" alt="quote right" className="w-9 h-9" />
+            </div>
+          </div>
+
+          {/* --- Marketing Graphics Section --- */}
+          <div className="w-full max-w-6xl mx-auto mt-12">
+            <div className="grid grid-cols-3 gap-4">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="bg-[#FDC52A] rounded-[20px] overflow-hidden h-[309px] w-full"
+                >
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_PB_URL}/api/files/${episode.collectionId}/${episode.id}/${episode.images?.[0]}`}
+                    alt={`Episode Graphic ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* --- Guest Bio Section --- */}
+          <div className="w-full max-w-[960px] mt-8">
+
+            <div className="text-[26px] font-bold text-black/20 mb-2 font-[Mona Sans]">
+              Guest Bio
+            </div>
+
+            {/* Guest Name */}
+            <div className="text-[26px] font-bold text-[#0860A3] mb-2 font-[Mona Sans]">
+              {(await getGuestsList(episode))[0]}
+            </div>
+
+            {/* Guest Bio Description */}
+            <div className="text-[16px] text-black/20 font-normal leading-relaxed font-[Mona Sans]">
+              {episode.guestBio || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+            </div>
+          </div>
         </div>
       </article>
+      <Footer />
+
     </div>
   );
 }
