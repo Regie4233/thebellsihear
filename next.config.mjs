@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'standalone',
     images: {
+        dangerouslyAllowSVG: true,
         remotePatterns: [
             {
                 protocol: "https",
@@ -25,8 +27,18 @@ const nextConfig = {
                 hostname: '3.148.108.186',
                 port: '8081',
                 pathname: '**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'placehold.co',
+                
             }
         ]
+    },
+    env: {
+        NEXT_PUBLIC_PB_URL: process.env.NEXT_PUBLIC_PB_URL,
+        PB_USER: process.env.PB_USER,
+        PB_PASS: process.env.PB_PASS
     }
 };
 

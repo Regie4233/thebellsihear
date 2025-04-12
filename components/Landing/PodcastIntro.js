@@ -3,7 +3,7 @@ const PodcastIntro = () => {
         <section className="w-full px-4 py-16 flex justify-center items-center bg-white">
             <div className="w-full max-w-[1280px] mx-auto flex flex-col items-center gap-4">
                 <div className="w-full text-center space-y-2">
-                    <h2 className="text-[36px] font-bold text-black/20 font-sans break-words">
+                    <h2 className="text-[36px] font-bold  font-sans break-words">
                         Background Story of Mentor A Promise Podcast
                     </h2>
 
