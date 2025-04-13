@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function EpisodeListAll() {
   return (
-    <main className='border-b'>
+    <main className=''>
     
       <Heading />
       <EpisodeListing />

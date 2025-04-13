@@ -3,9 +3,9 @@ import PodcastEpisodeCard from './PodcastEpisodeCard';
 import { formatDateToMMDDYY, getEpisodes } from '@/lib/helpers';
 
 const PodcastEpisodeList = async () => {
-    const episodes = await getEpisodes();
+    const episodes = await getEpisodes(10);
 
-    if (!episodes || episodes.length === 0) {
+    if (!episodes.items || episodes.items.length === 0) {
         return <div className="text-center py-10 text-gray-500">No episodes found.</div>;
     }
     return (
@@ -13,7 +13,7 @@ const PodcastEpisodeList = async () => {
             <h2 className="text-[26px] font-bold text-black/20">Episodes</h2>
             <div className='flex flex-col gap-8'>
                 {
-                    episodes.map(async (ep, idx) => {
+                    episodes.items.map(async (ep, idx) => {
                         // const guests = await getGuestsList(ep);
                         const date = await formatDateToMMDDYY(ep.date);
                         const data = {

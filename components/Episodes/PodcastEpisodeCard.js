@@ -36,7 +36,6 @@ const PodcastEpisodeCard = async ({ image, title, date, description, host, guest
                     <p className="text-[#0860A3] text-sm font-semibold">{date}</p>
 
                     <div className="bg-[#FDC52A] h-[160px] rounded-lg flex items-center justify-center">
-
                         <iframe
                             title={`Spotify Player for episode ${id}`}
                             // Tailwind class for rounded corners replaces inline style

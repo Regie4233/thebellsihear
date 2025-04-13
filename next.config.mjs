@@ -32,6 +32,24 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'placehold.co',
                 
+            },
+            {
+                protocol: 'https',
+                hostname: 'widgets.guidestar.org',
+                port: '',
+                pathname: '/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.guidestar.org',
+                port: '',
+                pathname: '/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'mentorapromise.org',
+                port: '',
+                pathname: '/**'
             }
         ]
     },

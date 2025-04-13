@@ -15,7 +15,7 @@ const Footer = async () => {
     const sortedData = data?.sort((a, b) => b.order - a.order)
     if (!data) return <p>error</p>;
   return (
-    <footer className='bg-secondary flex flex-col pb-[30px] lg:p-[50px] lg:pb-[0px] justify-center items-center gap-12'>
+    <footer className='bg-secondary text-nowrap flex flex-col pb-[30px] lg:p-[50px] lg:pb-[0px] justify-center items-center gap-12 border-t border-black '>
       <div className="top flex flex-col justify-center items-center lg:items-start gap-2 lg:w-[90%] lg:flex-row lg:justify-evenly xl:w-[80%]">
         <div className="footer-groups flex flex-col gap-4 mb-[.5rem] lg:flex-row lg:justify-center lg:gap-[75px] xl:gap-[80px]">
           <div className="footerFont font-[500] lg:text-[1.1rem] justify-center items-center border-b lg:justify-start lg:items-start group flex flex-col gap-2 lg:border-b-0 lg:pb-[1rem]" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
@@ -66,7 +66,7 @@ const Footer = async () => {
               </li>
             </ul>
           </div>
-          <div className="relative w-24 h-24">
+          {/* <div className="relative w-24 h-24">
             <Image
               id='candid'
               src={candid}
@@ -75,8 +75,18 @@ const Footer = async () => {
               sizes="100%"
               className='self-center border-0 object-contain'
             />
-          </div>
-
+          </div> */}
+          {/* replace the code on line 80 to Next Image instead of img */}
+<a href="https://www.guidestar.org/profile/shared/ed4c74ef-06d0-4b08-84e7-7f2cee317a46" target="_blank"  className="relative w-24 h-24">
+<Image
+              id='candid'
+              src={"https://widgets.guidestar.org/TransparencySeal/9807294"}
+              alt="candid seal"
+              fill
+              sizes="100%"
+              className='self-center border-0 object-contain'
+            />
+</a>
 
 
         </div>

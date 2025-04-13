@@ -107,7 +107,7 @@ export default async function EpisodePage({ params }) {
 
           </div>
 
-          {/* --- Marketing Graphics Section --- */}
+          {/* --- Marketing Graphics Section ---
           <div className="w-full max-w-6xl mx-auto mt-12">
             <div className="grid grid-cols-3 gap-4">
               {Array.from({ length: 6 }).map((_, index) => (
@@ -123,7 +123,7 @@ export default async function EpisodePage({ params }) {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* --- Guest Bio Section --- */}
           <div className="w-full max-w-[960px] mt-8">
