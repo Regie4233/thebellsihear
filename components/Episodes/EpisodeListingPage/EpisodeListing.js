@@ -46,15 +46,15 @@ export default function EpisodeListing() {
 
     return (
         <>
-            <section className='flex flex-row justify-between items-center m-auto w-9/13'>
-                <span>
+            <section className='flex flex-col md:flex-row justify-between md:items-center m-auto w-11/12 md:w-9/13'>
+                <div>
                     <div className="mb-6 text-sm text-gray-500 flex flex-row gap-2 pt-8">
                         <Link href="/" className="text-blue-600 hover:underline">Home</Link>
                         &gt;
                         <p className="text-gray-500">Episodes</p>
                     </div>
                     <p className='font-semibold text-xl'>All Episodes</p>
-                </span>
+                </div>
 
                 <EpisodesPagination
                     currentPage={currentPage}

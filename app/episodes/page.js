@@ -4,8 +4,7 @@ import React from 'react'
 
 export default function EpisodeListAll() {
   return (
-    <main className=''>
-    
+    <main className=''>    
       <Heading />
       <EpisodeListing />
     </main>

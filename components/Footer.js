@@ -11,14 +11,14 @@ import { getPartners } from '@/lib/helpers';
 
 
 const Footer = async () => {
-    const data = await getPartners();
-    const sortedData = data?.sort((a, b) => b.order - a.order)
-    if (!data) return <p>error</p>;
+  const data = await getPartners();
+  const sortedData = data?.sort((a, b) => b.order - a.order)
+  if (!data) return <p>error</p>;
   return (
     <footer className='bg-secondary text-nowrap flex flex-col pb-[30px] lg:p-[50px] lg:pb-[0px] justify-center items-center gap-12 border-t border-black '>
       <div className="top flex flex-col justify-center items-center lg:items-start gap-2 lg:w-[90%] lg:flex-row lg:justify-evenly xl:w-[80%]">
-        <div className="footer-groups flex flex-col gap-4 mb-[.5rem] lg:flex-row lg:justify-center lg:gap-[75px] xl:gap-[80px]">
-          <div className="footerFont font-[500] lg:text-[1.1rem] justify-center items-center border-b lg:justify-start lg:items-start group flex flex-col gap-2 lg:border-b-0 lg:pb-[1rem]" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
+        <main className="footer-groups flex flex-row flex-wrap lg:flex-nowrap gap-4 mb-[.5rem] justify-center lg:gap-[75px] xl:gap-[80px]">
+          <div className="basis-1/3 footerFont font-[500] lg:text-[1.1rem] justify-center items-center border-b lg:justify-start lg:items-start group flex flex-col gap-2 lg:border-b-0 lg:pb-[1rem]" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
             <p className='p-bold font-[800] pt-[6%] lg:pt-[0%]'>About Us</p>
             <ul className='flex flex-col pb-[5%] justify-center items-center lg:pb-[0%] lg:justify-start lg:items-start gap-2'>
               <li><p> <a href='./about'>Our story</a></p></li>
@@ -27,7 +27,7 @@ const Footer = async () => {
               <li className='border-0'><p><a href='./about'>Our team</a></p></li>
             </ul>
           </div>
-          <div className="footerFont font-[500] lg:text-[1.1rem] justify-center items-center border-b lg:justify-start lg:items-start group flex flex-col gap-2 lg:pb-[1rem] lg:border-b-0" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
+          <div className="basis-1/3 footerFont font-[500] lg:text-[1.1rem] justify-center items-center border-b lg:justify-start lg:items-start group flex flex-col gap-2 lg:pb-[1rem] lg:border-b-0" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
             <p className='p-bold text-para font-bold'>Get Involved</p>
             <ul className='flex justify-center pb-[5%] items-center lg:pb-[0%] lg:justify-start lg:items-start flex-col gap-2'>
               <li><p><a href='./get-involved'>Volunteer</a></p></li>
@@ -36,20 +36,20 @@ const Footer = async () => {
               <li className='border-0'><p><a href='./get-involved' >Partnership</a></p></li>
             </ul>
           </div>
-          <div className="group footerFont font-[500] lg:text-[1.1rem] flex flex-col border-b justify-center items-center lg:justify-start lg:items-start gap-2 lg:border-b-0 lg:pb-[1rem]" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
+          <div className="basis-full group footerFont font-[500] lg:text-[1.1rem] flex flex-col border-b justify-center items-center lg:justify-start lg:items-start gap-2 lg:border-b-0 lg:pb-[1rem]" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
             <p className='p-bold text-para bold font-[800]'>Our Partners</p>
             <ul className='flex justify-center pb-[5%] items-center lg:justify-start lg:items-start lg:pb-[0%] flex-col gap-2'>
               {
                 sortedData?.map((partner, index) => (
-                    <li key={index} className='flex items-start gap-2'>
-                         <a href={partner.url} target="_blank" rel="noopener noreferrer">{partner.name}</a>
-                    </li>
+                  <li key={index} className='flex items-start gap-2'>
+                    <a href={partner.url} target="_blank" rel="noopener noreferrer">{partner.name}</a>
+                  </li>
                 ))
               }
               <li className='border-0'><p><a href='./get-involved' >Become a partner</a></p></li>
             </ul>
           </div>
-          <div className="group contact-us footerFont font-[500] lg:text-[1.1rem] border-b flex flex-col justify-center items-center lg:justify-start lg:items-start gap-2 lg:border-b-0 lg:pb-[1rem]" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
+          <div className="basis-full group contact-us footerFont font-[500] lg:text-[1.1rem] border-b flex flex-col justify-center items-center lg:justify-start lg:items-start gap-2 lg:border-b-0 lg:pb-[1rem]" style={{ borderColor: 'rgba(0, 0, 0, 0.3)' }}>
             <p className='p-bold font-bold'>Contact Us</p>
             <ul className='flex justify-center pb-[5%] lg:pb-[0%] items-center lg:justify-start lg:items-start flex-col gap-2'>
               <li className='flex items-start gap-2'>
@@ -77,8 +77,8 @@ const Footer = async () => {
             />
           </div> */}
           {/* replace the code on line 80 to Next Image instead of img */}
-<a href="https://www.guidestar.org/profile/shared/ed4c74ef-06d0-4b08-84e7-7f2cee317a46" target="_blank"  className="relative w-24 h-24">
-<Image
+          <a href="https://www.guidestar.org/profile/shared/ed4c74ef-06d0-4b08-84e7-7f2cee317a46" target="_blank" className="m-auto relative w-24 h-24">
+            <Image
               id='candid'
               src={"https://widgets.guidestar.org/TransparencySeal/9807294"}
               alt="candid seal"
@@ -86,10 +86,10 @@ const Footer = async () => {
               sizes="100%"
               className='self-center border-0 object-contain'
             />
-</a>
+          </a>
 
 
-        </div>
+        </main>
 
       </div>
       <div className="bot pb-[30px] md:pb-[0px] flex flex-col border-b justify-center items-center lg:justify-start lg:items-center gap-2">
@@ -113,13 +113,12 @@ const Footer = async () => {
         <p className='small font-[500] flex justify-center items-center gap-2'><span className='cursor-pointer'><a href='./disclaimer' >DISCLAIMER</a></span>|<span className='cursor-pointer'><a href='./privacy-policy' >PRIVACY POLICY</a></span></p>
         <p className='small font-[500] flex justify-center items-center gap-2'>Mentor A Promise, Inc. - EIN 84-2118930</p>
         <figure className='relative w-[55px] h-[55px]'>
-        <Image id='footer-logo' src={logo} alt="mentor a promise logo"  fill sizes='100vw'/>
+          <Image id='footer-logo' src={logo} alt="mentor a promise logo" fill sizes='100vw' />
         </figure>
-       
-        <p className='px-8 p-0 font-[500] text-center lg:text-left'>
-         
+
+        <p className='px-8 p-0 font-[500] text-center lg:text-left text-wrap'>
           The Official Site of Mentor a Promise, Inc. All Rights Reserved. MAP is a 501(c)3 (nonprofit) organization and donations are tax deductible.
-          </p>
+        </p>
 
       </div>
     </footer>

@@ -22,7 +22,10 @@ const testimonials = [
 
 const PodcastTestimonials = async () => {
     const testimonials = await getTestimonials();
-
+  
+    if (!testimonials || testimonials.length === 0) {
+        return null;
+    }
     return (
         <section className="w-full px-4 py-16 flex flex-col items-center gap-16">
             <div className="w-full max-w-[1280px] flex flex-col items-start gap-4 border-b border-[#767676] pb-4">

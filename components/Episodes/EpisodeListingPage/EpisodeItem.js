@@ -1,4 +1,6 @@
 import SpotifyFrame from '@/components/SpotifyFrame';
+import { formatDate, formatDurationRefined } from '@/lib/clientHelpers';
+import { formatDateToMMDDYY } from '@/lib/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -58,11 +60,10 @@ export default function PodcastEpisodeList_Client({ episodes }) {
         <div className="w-fulls max-w-screen-xl mx-auto w-9/13">
             <div className="flex flex-col gap-6 md:gap-8">
                 {episodes.map((ep, idx) => {
-
                     const data = {
                         image: ep.images[0] !== undefined ? `${process.env.NEXT_PUBLIC_PB_URL}/api/files/${ep.collectionId}/${ep.id}/` + ep.images[0] : null,
                         title: ep.Title || "Title of Podcast Episode",
-                        date: "April 000, 2025 | 00min 00secs",
+                        date:  `${formatDate(ep.date)} ${formatDurationRefined(ep.duration_min)}` || "April 000, 2025 | 00min 00secs",
                         blog: ep.Blog || "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         host: ep.host,
                         guest: ep.guests,

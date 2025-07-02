@@ -6,13 +6,13 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "n.simon.us.com",
+                hostname: "pb.mentorapromise.org",
                 port: '',
                 pathname: '/**'
             },
             {
                 protocol: "https",
-                hostname: "**.simon.us.com",
+                hostname: "**.mentorapromise.org",
                 port: '',
                 pathname: '/**'
             },
@@ -50,7 +50,8 @@ const nextConfig = {
                 hostname: 'mentorapromise.org',
                 port: '',
                 pathname: '/**'
-            }
+            },
+
         ]
     },
     env: {

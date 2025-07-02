@@ -1,9 +1,13 @@
-const PodcastIntro = () => {
+import { getLandingPage, getPageInfo } from "@/lib/helpers";
+
+const PodcastIntro =  async () => {
+
+    const data = await getLandingPage();
     return (
         <section className="w-full px-4 py-16 flex justify-center items-center bg-white">
             <div className="w-full max-w-[1280px] mx-auto flex flex-col items-center gap-4">
                 <div className="w-full text-center space-y-2">
-                    <h2 className="text-[36px] font-bold  font-sans break-words">
+                    <h2 className="text-heading3 md:text-heading1 font-sans break-words">
                         Background Story of Mentor A Promise Podcast
                     </h2>
 
@@ -12,12 +16,7 @@ const PodcastIntro = () => {
                     </h4>
                 </div>
 
-                <p className="text-[22px] text-[#474747] text-center leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                <div dangerouslySetInnerHTML={{ __html: data[0].background_story }} className="text-[22px] text-[#474747] leading-relaxed whitespace-pre-line"/>
             </div>
         </section>
     );

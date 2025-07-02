@@ -11,28 +11,28 @@ export default function EpisodesPagination({ currentPage, totalItems, itemsPerPa
     const handlePrevious = () => {
         if (currentPage > 1) {
             onPageChange(currentPage - 1);
+            window.scrollTo(0, 0); 
         }
     };
 
     const handleNext = () => {
         if (currentPage < totalPages) {
             onPageChange(currentPage + 1);
+            window.scrollTo(0, 0); 
         }
     };
 
     const handlePageClick = (pageNumber) => {
         onPageChange(pageNumber);
+        window.scrollTo(0, 0); 
     };
 
-    // --- Simple Page Number Generation ---
-    // For a large number of pages, you'll want more sophisticated logic
-    // (e.g., showing ellipsis like 1 ... 5 6 7 ... 20)
+
     let pageNumbers = [];
-    const maxPagesToShow = 5; // Limit how many page numbers are visible at once
+    const maxPagesToShow = 5;
     let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
     let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
 
-     // Adjust startPage if endPage is at the limit
     if (endPage === totalPages) {
          startPage = Math.max(1, endPage - maxPagesToShow + 1);
     }
@@ -41,7 +41,7 @@ export default function EpisodesPagination({ currentPage, totalItems, itemsPerPa
     for (let i = startPage; i <= endPage; i++) {
         pageNumbers.push(i);
     }
-     // Add ellipsis and first/last page if needed
+
      const showStartEllipsis = startPage > 1;
      const showEndEllipsis = endPage < totalPages;
 

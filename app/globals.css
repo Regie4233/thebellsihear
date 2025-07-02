@@ -5,7 +5,32 @@
   --foreground: #171717;
 }
 
-@theme inline {
+@theme inline{
+  --font-map: 'monasans';
+  --text-heading1: 62px;
+  --text-heading2: 48px;
+  --text-heading3: 34px;
+  --text-heading4: 28px;
+  --text-body1: 18px;
+  --text-body1-bold: 18px;
+  --text-body2: 16px;
+  --text-body2-bold: 16px;
+  --text-caption: 14px;
+  --text-caption-bold: 14px;
+  --text-eyebrow1: 28px;
+  --text-eyebrow2: 20px;
+  --color-n90: #343434;
+  --color-n50: #474747;
+  --color-n20: #999999;
+  --color-n0: #FFFFFF;
+  --color-p-blue: #0860A3;
+  --color-p-yellow: #FDC52A;
+  --color-accent: #94B2C9;
+  --color-success: #16A31D;
+  --color-success-light: #E8F5E9;
+  --color-error: #E31B1B;
+  --color-warning: #F7E40F;
+  /* below is the default nextjs code keeping it for reference */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -17,6 +42,13 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+@font-face {
+  font-family: 'monasans';
+  src: url('/fonts/MonaSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {

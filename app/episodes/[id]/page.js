@@ -1,7 +1,8 @@
-import { formatDateToMMDDYY, getEpisode, getEpisodes, getGuestInfo } from '@/lib/helpers';
+import { getEpisode, getEpisodes, getGuestInfo } from '@/lib/helpers';
 import Image from 'next/image';
 import Link from 'next/link';
 import SpotifyFrame from '@/components/SpotifyFrame';
+import { formatDateToMMDDYY, formatDurationRefined } from '@/lib/clientHelpers';
 
 
 export default async function EpisodePage({ params }) {
@@ -11,7 +12,7 @@ export default async function EpisodePage({ params }) {
   const episode = await getEpisode(id);
   const allEpisodes = await getEpisodes();
   const episodeIndex = allEpisodes.reverse().findIndex((ep) => ep.id === id) + 1;
-  const { name, about, image } = await getGuestInfo(episode.guests);
+  const { name, about, image } = await getGuestInfo(episode.guests || null);
   // Guard clause for episode not found
   if (!episode) {
     return (
@@ -62,7 +63,7 @@ export default async function EpisodePage({ params }) {
 
 
           <div className="max-w-[960px] w-full mx-auto text-[#7E7E7E] text-[16px] font-semibold mb-4">
-            {formatDateToMMDDYY(episode.date)} | {episode.duration || '32min 24secs'}
+            {formatDateToMMDDYY(episode.date)} | {formatDurationRefined(episode.duration_min) || ''}
           </div>
 
           {/* Media Player */}
@@ -78,7 +79,7 @@ export default async function EpisodePage({ params }) {
           {/* Host name and guest name */}
           <div className="w-full max-w-[960px] mx-auto mt-6 pt-4 text-[16px] ">
             <p className="mb-1"><strong className="font-bold">Host:</strong> {episode.host}</p>
-            {<p><strong clasname="font-bold">Guest:</strong>{' '}{name}</p>}
+            {<p><strong clasname="font-bold">Guest:</strong>{' '}{name || ''}</p>}
           </div>
 
           {/* Quote */}
@@ -134,12 +135,12 @@ export default async function EpisodePage({ params }) {
 
             {/* Guest Name */}
             <div className="text-[26px] font-bold text-[#0860A3] mb-2 font-[Mona Sans]">
-              {/* {(await getGuestsList(episode))[0]} */}{name}
+              {/* {(await getGuestsList(episode))[0]} */}{name || ''}
             </div>
 
             {/* Guest Bio Description */}
             <div className="text-[16px]  font-normal leading-relaxed font-[Mona Sans]">
-              {about}
+              {about || ''}
             </div>
           </div>
         </div>
